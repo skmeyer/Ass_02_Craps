@@ -9,7 +9,6 @@ public class Main {
         int die1 = 0;
         int die2 = 1;
         int rollSum = die1 + die2;
-        int rollNum = 0;
         int point = 0;
         String continueYN = "";
         boolean done = false;
@@ -17,7 +16,6 @@ public class Main {
         System.out.println("Welcome to Craps! Let's start the game.");
         do
         {
-            rollNum ++;
             die1 = gen.nextInt(6) + 1;
             die2 = gen.nextInt(6) + 1;
             rollSum = die1 + die2;
