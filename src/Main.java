@@ -10,29 +10,52 @@ public class Main {
         int die2 = 1;
         int rollSum = die1 + die2;
         int rollNum = 0;
+        int point = 0;
         String continueYN = "";
 
+        System.out.println("Welcome to Craps! Let's start the game.");
         do
         {
-            System.out.println("Welcome to Craps! Let's start the game.");
-            while(die1 != die2)
+            rollNum ++;
+            die1 = gen.nextInt(6) + 1;
+            die2 = gen.nextInt(6) + 1;
+            rollSum = die1 + die2;
+            if(rollSum == 2 || rollSum == 3 || rollSum == 12)
             {
-                rollNum ++;
-                die1 = gen.nextInt(6) + 1;
-                die2 = gen.nextInt(6) + 1;
-                rollSum = die1 + die2;
-                if(rollSum == 2 || rollSum == 3 || rollSum == 12)
-                {
-                    System.out.println("You crapped out! You rolled a " + rollSum + ".");
-                }
-                else if(rollSum == 7 || rollSum == 11)
-                {
+                System.out.println("You crapped out! You rolled a " + rollSum + ".");
+            }
+            else if(rollSum == 7 || rollSum == 11)
+            {
                     System.out.println("Congrats! You won with a natural. You rolled a " + rollSum + ".");
+            }
+            else
+            {
+                System.out.println("You rolled a " + rollSum + ". You are now rolling against the point.");
+                point = rollSum;
+                while(rollSum != 7 || rollSum != point)
+                {
+                    die1 = gen.nextInt(6) + 1;
+                    die2 = gen.nextInt(6) + 1;
+                    rollSum = die1 + die2;
+                if(rollSum == 7)
+                {
+                    System.out.println("You crapped out! You rolled a 7.");
+                }
+                else if(rollSum == point)
+                {
+                    System.out.println("Congratulations! You matched your roll of " + point + " and you win!");
+                }
+                else
+                {
+                    System.out.println("You rolled a " + rollSum + ". The point you are trying to match is " + point + ". Better luck next rolL!");
+                }
                 }
 
+                    
             }
 
-
+            System.out.print("Would you like to play again? [Y/N]: ");
+            continueYN = in.nextLine();
         }while(continueYN.equalsIgnoreCase("Y"));
     }
 }
